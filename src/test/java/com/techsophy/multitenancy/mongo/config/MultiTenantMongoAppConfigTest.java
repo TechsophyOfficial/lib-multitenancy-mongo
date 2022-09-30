@@ -10,11 +10,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.util.ReflectionTestUtils;
 
 @ExtendWith(MockitoExtension.class)
 class MultiTenantMongoAppConfigTest {
 
+    @Value("${databaseName:techsophy}")
+    String databaseName;
     @InjectMocks
     MultiTenantMongoAppConfig multiTenantMongoAppConfig;
 
@@ -28,15 +31,15 @@ class MultiTenantMongoAppConfigTest {
                 "mongodb+srv://nandini:Nandini%40abc123@cluster0.sp7dq.mongodb.net/test?retryWrites=false");
     }
 
-//    @Test
-//    void databaseNameTest(){
-//       String response = multiTenantMongoAppConfig.databaseName();
-//       //Assertions.assertEquals("${database.name}",response);
-//        Assertions.assertNull(response);
-//    }
-//    @Test
-//    void createMongoClientTest(){
-//      Assertions.assertThrows(NullPointerException.class,()->multiTenantMongoAppConfig.createMongoClient());
-//       //Assertions.assertNotNull(response);
-//    }
+    @Test
+    void databaseNameTest(){
+       String response = multiTenantMongoAppConfig.databaseName();
+       Assertions.assertEquals("techsophy",response);
+       // Assertions.assertNull(response);
+    }
+    @Test
+    void createMongoClientTest(){
+     // Assertions.assertThrows(NullPointerException.class,()->multiTenantMongoAppConfig.createMongoClient());
+        Assertions.assertNotNull(multiTenantMongoAppConfig.createMongoClient());
+    }
 }

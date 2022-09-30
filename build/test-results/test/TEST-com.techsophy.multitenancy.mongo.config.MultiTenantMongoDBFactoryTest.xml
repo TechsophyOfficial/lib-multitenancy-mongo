@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-09-30T07:10:11" hostname="DESKTOP-H151DBU" time="1.132">
+  <properties/>
+  <testcase name="SimpleMongoClientDatabaseFactoryTest()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.995"/>
+  <testcase name="getTenantDatabase()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.079"/>
+  <testcase name="MultiTenantMongoDBFactoryTest()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.004"/>
+  <testcase name="tenantContextRemove()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.004"/>
+  <testcase name="doGetMongoDatabase()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.012"/>
+  <testcase name="getMongoDatabaseTest()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.008"/>
+  <testcase name="doGetMongoDatabaseNull()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoDBFactoryTest" time="0.007"/>
+  <system-out><![CDATA[12:40:10.911 [cluster-ClusterId{value='63369652bc0cc71cc859e899', description='null'}-srv-cluster0.sp7dq.mongodb.net] INFO org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-00.sp7dq.mongodb.net:27017 to client view of cluster
+12:40:11.048 [cluster-ClusterId{value='63369652bc0cc71cc859e899', description='null'}-srv-cluster0.sp7dq.mongodb.net] INFO org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-02.sp7dq.mongodb.net:27017 to client view of cluster
+12:40:11.049 [cluster-ClusterId{value='63369652bc0cc71cc859e899', description='null'}-srv-cluster0.sp7dq.mongodb.net] INFO org.mongodb.driver.cluster - Adding discovered server cluster0-shard-00-01.sp7dq.mongodb.net:27017 to client view of cluster
+12:40:11.052 [cluster-ClusterId{value='63369652bc0cc71cc859e899', description='null'}-srv-cluster0.sp7dq.mongodb.net] DEBUG org.mongodb.driver.cluster - Updating cluster description to  {type=REPLICA_SET, servers=[{address=cluster0-shard-00-02.sp7dq.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}, {address=cluster0-shard-00-00.sp7dq.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}, {address=cluster0-shard-00-01.sp7dq.mongodb.net:27017, type=UNKNOWN, state=CONNECTING}]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

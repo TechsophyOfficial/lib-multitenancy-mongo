@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfigTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-09-30T07:10:05" hostname="DESKTOP-H151DBU" time="5.606">
+  <properties/>
+  <testcase name="databaseNameTest()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfigTest" time="4.895"/>
+  <testcase name="createMongoClientTest()" classname="com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfigTest" time="0.71"/>
+  <system-out><![CDATA[12:40:09.936 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'databaseName' of type [null] on target object [com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig@d627a4a] or target class [class com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig] to value [techsophy]
+12:40:09.953 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'databaseUrl' of type [null] on target object [com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig@d627a4a] or target class [class com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig] to value [mongodb+srv://nandini:Nandini%40abc123@cluster0.sp7dq.mongodb.net/test?retryWrites=false]
+12:40:10.005 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'databaseName' of type [null] on target object [com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig@55b20c55] or target class [class com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig] to value [techsophy]
+12:40:10.006 [Test worker] DEBUG org.springframework.test.util.ReflectionTestUtils - Setting field 'databaseUrl' of type [null] on target object [com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig@55b20c55] or target class [class com.techsophy.multitenancy.mongo.config.MultiTenantMongoAppConfig] to value [mongodb+srv://nandini:Nandini%40abc123@cluster0.sp7dq.mongodb.net/test?retryWrites=false]
+12:40:10.685 [Test worker] INFO org.mongodb.driver.cluster - Cluster created with settings {hosts=[127.0.0.1:27017], srvHost=cluster0.sp7dq.mongodb.net, mode=MULTIPLE, requiredClusterType=REPLICA_SET, serverSelectionTimeout='30000 ms', requiredReplicaSetName='atlas-qjrvv5-shard-0'}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
