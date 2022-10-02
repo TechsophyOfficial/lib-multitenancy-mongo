@@ -15,14 +15,19 @@ public class MultiTenantMongoDBFactory extends SimpleMongoClientDatabaseFactory 
     @Value("${database.name}")
     private String databaseName;
 
+
+
+
     public MultiTenantMongoDBFactory(@Qualifier("createMongoClient") MongoClient mongoClient, String databaseName) {
         super(mongoClient, databaseName);
     }
 
     @Override
     protected MongoDatabase doGetMongoDatabase(String dbName) {
-        return getMongoClient().getDatabase(getTenantDatabase());
+        return  getMongoClient().getDatabase(getTenantDatabase());
     }
+
+
 
     @Override
     public MongoDatabase getMongoDatabase() {
