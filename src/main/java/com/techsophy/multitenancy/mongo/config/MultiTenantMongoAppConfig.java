@@ -12,21 +12,21 @@ import org.springframework.context.annotation.Configuration;
 public class MultiTenantMongoAppConfig  {
 
     @Value("${database.url}")
-    private  String DATABASE_URL;
+    private  String databaseUrl;
 
 
     @Value("${database.name}")
-    private String DATABASE_NAME;
+    private String databaseName;
 
 
     @Bean
     public String databaseName() {
-        return DATABASE_NAME;
+        return databaseName;
     }
 
     @Bean
     public MongoClient createMongoClient() {
-        final ConnectionString connectionString = new ConnectionString(DATABASE_URL);
+        final ConnectionString connectionString = new ConnectionString(databaseUrl);
         final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
