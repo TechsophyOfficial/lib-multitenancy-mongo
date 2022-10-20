@@ -9,6 +9,8 @@ workflows:
     #   not: << pipeline.git.tag >>
     jobs:
       - build:
+          context: 
+            - ossContext        
           filters:
             branches:
               only: /main/
