@@ -58,4 +58,20 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: gradle test
+      - run:
+          name: identify version
+          command: |
+              if [ $CIRCLE_TAG ]
+              then
+                echo 'export ORG_GRADLE_PROJECT_LIBRARY_VERSION=$CIRCLE_TAG' >> $BASH_ENV
+              else
+                echo "export ORG_GRADLE_PROJECT_LIBRARY_VERSION=`git tag | tail -1`-SNAPSHOT" >> $BASH_ENV
+              fi
+              source $BASH_ENV
+      - run: 
+          name: generate keys
+          command: |
+            openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
+            openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
+            gradle publish
+            
