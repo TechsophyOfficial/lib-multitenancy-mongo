@@ -1,52 +1,6 @@
 # Java Gradle CircleCI 2.0 configuration file
 # See: https://circleci.com/docs/2.0/language-java/
-version: 2.1
-
-
-workflows:
-  build-test-deploy:
-    jobs:
-      - android/run-ui-tests:
-          name: build-and-test
-          system-image: system-images;android-23;google_apis;x86
-          test-command: ./gradlew assemble sample:connectedDebugAndroidTest
-          filters:
-            tags:
-              only: /^[0-9]+.*/
-      - hold-for-approval:
-          type: approval
-          requires:
-            - build-and-test
-          filters:
-            tags:
-              only: /^[0-9]+.*/
-            branches:
-              ignore: /.*/
-      - deploy-to-sonatype:
-          name: Deploy to Maven Central
-          requires:
-            - hold-for-approval
-          filters:
-            tags:
-              only: /^[0-9]+.*/
-
-    nightly-snapshot:
-      triggers: #use the triggers key to indicate a scheduled build
-        - schedule:
-            cron: "0 0 * * *" # use cron syntax to set the schedule
-            filters:
-              branches:
-                only:
-                  - main
-      jobs:
-        - android/run-ui-tests:
-            name: build-and-test
-            system-image: system-images;android-23;google_apis;x86
-            test-command: ./gradlew assemblesample:connectedDebugAndroidTest
-        - deploy-to-sonatype:
-            name: Deploy Snapshot to Sonatype
-            requires:
-              - build-and-test
+version: 2
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -69,12 +23,6 @@ jobs:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
-
-  deploy-to-sonatype:
-    executor:
-        name: android/android-machine
-        resource-class: xlarge
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -94,32 +42,5 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-
       # run tests!
-      - run:
-          name: Define ORG_GRADLE_PROJECT_LIBRARY_VERSION Environment Variable at Runtime
-          command: |
-            if [ $CIRCLE_TAG ]
-            then
-              echo 'export ORG_GRADLE_PROJECT_LIBRARY_VERSION=$CIRCLE_TAG' >> $BASH_ENV
-            else
-              echo "export ORG_GRADLE_PROJECT_LIBRARY_VERSION=`git tag | tail -1`-SNAPSHOT" >> $BASH_ENV
-            fi
-            source $BASH_ENV
-      - run:
-          name: Inject Maven signing key
-          command: |
-            echo $GPG_SIGNING_KEY \
-              | awk 'NR == 1 { print "SIGNING_KEY=" } 1' ORS='\\n' \
-              >> gradle.properties
-
-      - run:
-          name: Publish to Maven Central
-          command: ./gradlew assemble publishToSonatype closeAndReleaseSonatypeStagingRepository
-      - run:
-          name: generate keys
-          command: |
-            openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
-            openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
-            gradle publish
-            
+      - run: gradle test
