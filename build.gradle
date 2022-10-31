@@ -98,14 +98,16 @@ publishing {
     }
 }
 
-def signingKey = findProperty('SIGNING_KEY')
-def signingKeyPwd = findProperty('SIGNING_KEY_PWD')
-
+//def signingKey = findProperty('SIGNING_KEY')
+//def signingKeyPwd = findProperty('SIGNING_KEY_PWD')
+//
+//signing {
+//    useInMemoryPgpKeys(signingKey, signingKeyPwd)
+//    sign publishing.publications
+//}
 signing {
-    useInMemoryPgpKeys(signingKey, signingKeyPwd)
-    sign publishing.publications
+    sign publishing.publications.maven
 }
-
 javadoc {
     if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
