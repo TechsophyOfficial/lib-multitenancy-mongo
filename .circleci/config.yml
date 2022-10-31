@@ -89,6 +89,12 @@ jobs:
           command: chmod +x gradlew
 
       - run:
+          command: |
+            echo "signing.password=$<< parameters.gpg_key_name >>" >> gradle.properties
+            echo "signing.secretKeyRingFile=/home/circleci/.gnupg/secring.gpg" >> gradle.properties
+          name: Setting up Gradle signing
+
+      - run:
           name: Publish to Maven
           command: ./gradlew assemble publishToSonatype closeAndReleaseSonatypeStagingRepository
 
