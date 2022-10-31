@@ -77,7 +77,10 @@ jobs:
             echo $GPG_SIGNING_KEY \
               | awk 'NR == 1 { print "SIGNING_KEY=" } 1' ORS='\\n' \
               >> gradle.properties
-            
+
+      - run:
+          name: permission to graldew
+          command: chmod +x gradlew
       - run:
           name: Publish to Maven
           command: ./gradlew assemble publishToSonatype closeAndReleaseSonatypeStagingRepository
