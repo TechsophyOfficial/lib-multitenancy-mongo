@@ -72,6 +72,12 @@ jobs:
             source $BASH_ENV
 
       - run:
+           name: values
+           command : echo $BASH_ENV
+
+
+
+      - run:
           name: Inject Maven signing key
           command: |
             echo $GPG_SIGNING_KEY \
