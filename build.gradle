@@ -86,16 +86,16 @@ publishing {
     }
 
 
-    repositories {
-        maven {
-            name = "OSSRH"
-            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            credentials {
-                username = findProperty('OSSRH_USERNAME')
-                password = findProperty('OSSRH_PASSWORD')
-            }
-        }
-    }
+//    repositories {
+//        maven {
+//            name = "OSSRH"
+//            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+//            credentials {
+//                username = findProperty('OSSRH_USERNAME')
+//                password = findProperty('OSSRH_PASSWORD')
+//            }
+//        }
+//    }
 }
 
 //def signingKey = findProperty('SIGNING_KEY')
