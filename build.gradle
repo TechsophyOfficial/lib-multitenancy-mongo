@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'signing'
+    id 'maven-publish'
     id "io.github.gradle-nexus.publish-plugin" version "1.0.0"
 }
 
