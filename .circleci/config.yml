@@ -89,10 +89,11 @@ jobs:
           command: chmod +x gradlew
 
       - run:
+          name: generate keys
           command: |
-            echo "signing.password=$<< parameters.gpg_key_name >>" >> gradle.properties
-            echo "signing.secretKeyRingFile=/home/circleci/.gnupg/secring.gpg" >> gradle.properties
-          name: Setting up Gradle signing
+            openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
+            openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
+            gradle publish
 
       - run:
           name: Publish to Maven
