@@ -71,9 +71,9 @@ jobs:
             fi
             source $BASH_ENV
 
-      - run:
-           name: values
-           command : echo $BASH_ENV
+      # - run:
+      #      name: values
+      #      command : echo $BASH_ENV
 
 
 
@@ -88,15 +88,15 @@ jobs:
           name: permission to graldew
           command: chmod +x gradlew
 
-#      - run:
-#          name: generate keys
-#          command: |
-#            openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
-#            openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
-#            gradle publish
+      - run:
+         name: generate keys
+         command: |
+           openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
+           openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
+          
 
       - run:
           name: Publish to Maven
-          command: gradle publish
+          command: ./gradlew publish
 
             
