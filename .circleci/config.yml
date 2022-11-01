@@ -77,26 +77,26 @@ jobs:
 
 
 
-      - run:
-          name: Inject Maven signing key
-          command: |
-            echo $GPG_SIGNING_KEY \
-              | awk 'NR == 1 { print "SIGNING_KEY=" } 1' ORS='\\n' \
-              >> gradle.properties
+#      - run:
+#          name: Inject Maven signing key
+#          command: |
+#            echo $GPG_SIGNING_KEY \
+#              | awk 'NR == 1 { print "SIGNING_KEY=" } 1' ORS='\\n' \
+#              >> gradle.properties
 
       - run:
           name: permission to graldew
           command: chmod +x gradlew
 
-      - run:
-          name: generate keys
-          command: |
-            openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
-            openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
-            gradle publish
+#      - run:
+#          name: generate keys
+#          command: |
+#            openssl enc -aes-256-cbc -d -in  private.key.pgp.enc -out private.key.pgp  -k $decryptPassphrase
+#            openssl enc -aes-256-cbc -d -in  gradle.properties.enc -out gradle.properties  -k $decryptPassphrase
+#            gradle publish
 
       - run:
           name: Publish to Maven
-          command: ./gradlew assemble publishToSonatype closeAndReleaseSonatypeStagingRepository
+          command: gradle publish
 
             
