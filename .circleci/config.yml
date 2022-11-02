@@ -13,7 +13,7 @@ workflows:
             - ossContext
           filters:
             branches:
-              only: /^.main/
+              only: /main/
             tags:
               only: /^.*/
 
