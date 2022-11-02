@@ -2,7 +2,6 @@ package com.techsophy.multitenancy.mongo.config;
 
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 public class TenantContext {

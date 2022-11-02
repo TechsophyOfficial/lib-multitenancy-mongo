@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 public class MultiTenantMongoDBFactory extends SimpleMongoClientDatabaseFactory {
 
     @Value("${database.name}")
-    private String DATABASE_NAME;
+    private String databaseName;
 
 
 
@@ -39,7 +39,7 @@ public class MultiTenantMongoDBFactory extends SimpleMongoClientDatabaseFactory 
         if (tenantId != null) {
             return tenantId;
         } else{
-            return DATABASE_NAME;
+            return databaseName;
         }
     }
 
