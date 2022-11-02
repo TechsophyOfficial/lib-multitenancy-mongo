@@ -44,6 +44,9 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: permission to graldew
+          command: chmod +x gradlew
 
       # Download and cache dependencies
       - restore_cache:
@@ -52,7 +55,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: gradle dependencies
+      - run: ./gradlew dependencies
 
       - save_cache:
           paths:
@@ -72,9 +75,7 @@ jobs:
             source $BASH_ENV
 
 
-      - run:
-          name: permission to graldew
-          command: chmod +x gradlew
+
 
       - run:
           name: generate keys
@@ -85,6 +86,12 @@ jobs:
 
       - run:
           name: Publish to Maven
-          command:  ./gradlew clean build  publishToSonatype closeAndReleaseSonatypeStagingRepository
+          command: | 
+            if [ $CIRCLE_TAG ]
+            then
+              ./gradlew clean build  publishToSonatype closeAndReleaseSonatypeStagingRepository
+            else
+              ./gradlew clean build  publishToSonatype closeAndReleaseSonatypeStagingRepository -x signMavenPublication
+            fi
 
             
