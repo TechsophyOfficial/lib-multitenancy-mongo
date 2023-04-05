@@ -7,8 +7,12 @@ import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.MongoTransactionManager;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@EnableTransactionManagement
 public class MultiTenantMongoAppConfig  {
 
     @Value("${database.url}")
@@ -33,4 +37,9 @@ public class MultiTenantMongoAppConfig  {
         return MongoClients.create(mongoClientSettings);
     }
 
+    @Bean
+    public MongoTransactionManager transactionManager(MongoTemplate mongoTemplate)
+    {
+        return new MongoTransactionManager(mongoTemplate.getMongoDbFactory());
+    }
 }
